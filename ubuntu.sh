@@ -322,7 +322,7 @@ HEAD(){
 HEAD "Upgrading packages"
 apt-get update && apt-get upgrade -y
 HEAD "Installing dependency"
-apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev -y
+apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev vim git automake -y
 #INFO "Getting xmrig source code"
 #git clone https://github.com/xmrig/xmrig.git xmrig-C3
 #INFO "Changing donate level to $DONATE %"
