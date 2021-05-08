@@ -323,15 +323,14 @@ HEAD "Upgrading packages"
 apt-get update && apt-get upgrade -y
 HEAD "Installing dependency"
 apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev -y
-INFO "Getting xmrig source code"
-#git clone https://github.com/C3Pool/xmrig-C3.git
-git clone https://github.com/xmrig/xmrig.git xmrig-C3
-INFO "Changing donate level to $DONATE %"
-sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig-C3/src/donate.h
-sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig-C3/src/donate.h
-mkdir xmrig-C3/build && cd xmrig-C3/build && cmake .. && make -j\$(nproc) && mv xmrig \$HOME && cd \$HOME
-INFO "XMRIG create success"
-HEAD "Please restart Termux App to run XMRIG"
+#INFO "Getting xmrig source code"
+#git clone https://github.com/xmrig/xmrig.git xmrig-C3
+#INFO "Changing donate level to $DONATE %"
+#sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig-C3/src/donate.h
+#sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig-C3/src/donate.h
+#mkdir xmrig-C3/build && cd xmrig-C3/build && cmake .. && make -j\$(nproc) && mv xmrig \$HOME && cd \$HOME
+#INFO "XMRIG create success"
+HEAD "Please restart Termux App"
 EOM
   echo "[ ! -e ./xmrig ] && bash ./install.sh" >> "$HOME/ubuntu-in-termux/ubuntu-fs/root/.bashrc"
 }
@@ -360,20 +359,6 @@ HEAD(){
 
 HEAD "Aminer is starting"
 cd "\$HOME"
-INFO "Killing other Aminer"
-ps -ef|grep service.sh|grep -v grep|grep -v \$\$|cut -c 9-15|xargs kill -s 9
-ps -ef|grep xmrig|grep -v grep|cut -c 9-15|xargs kill -s 9
-
-while true
-do
-	PID_COUNT=\$(ps aux|grep ./xmrig |grep -v grep|wc -l)
-	if [ \$PID_COUNT -eq 0 ]
-	then
-		[ ! -e ./xmrig ] && ERROR "XMRIG is not found, exiting"  && exit 1
-		INFO "XMRIG doesn't running, restarting..." && ./xmrig --randomx-mode=fast --no-huge-pages -u $USER -p $PASS -o $MIMING_URL
-	fi
-	sleep 15
-done
 
 EOM
 
@@ -426,5 +411,6 @@ done
 
 HELLO
 GET_PASS
-[ ! -e "$HOME/ubuntu-in-termux/ubuntu-fs/root/service.sh" ] && UBUNTU && TERMUX_BASHRC && UBUNTU_SERVICE_BASHRC && UBUNTU_INSTALL_BASHRC
+[ ! -e "$HOME/ubuntu-in-termux/ubuntu-fs/root/
+" ] && UBUNTU && TERMUX_BASHRC && UBUNTU_SERVICE_BASHRC && UBUNTU_INSTALL_BASHRC
 UBUNTU_START
