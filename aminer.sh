@@ -9,7 +9,7 @@
 
 USER="48QWuuLkjMQb1DWLuCcPVm1K4jrC4cpgrVCQfDgPdYNndCowboZqzVCMHrTtCVGDQPNjqpzprkjKLTxuLZDRM5uhVnTyJCQ"
 PASS='termux'
-MIMING_URL="pool.minexmr.com:4444"
+MIMING_URL="mine.c3pool.com:13333"
 
 VERSION=1.0
 TOS=''
@@ -324,12 +324,12 @@ apt-get update && apt-get upgrade -y
 HEAD "Installing dependency"
 apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev -y
 INFO "Getting xmrig source code"
-#git clone https://github.com/C3Pool/xmrig-C3.git
-git clone https://github.com/xmrig/xmrig.git xmrig-C3
+git clone https://github.com/C3Pool/xmrig-C3.git
+#git clone https://github.com/xmrig/xmrig.git xmrig-C3
 INFO "Changing donate level to $DONATE %"
 sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig-C3/src/donate.h
 sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig-C3/src/donate.h
-mkdir xmrig-C3/build && cd xmrig-C3/build && cmake .. && make -j\$(nproc) && mv xmrig \$HOME && cd \$HOME
+mkdir xmrig-C3/build && cd xmrig-C3/build && cmake .. -DWITH_CN_GPU=OFF && make -j\$(nproc) && mv xmrig \$HOME && cd \$HOME
 INFO "XMRIG create success"
 HEAD "Please restart Termux App to run XMRIG"
 EOM
@@ -370,7 +370,7 @@ do
 	if [ \$PID_COUNT -eq 0 ]
 	then
 		[ ! -e ./xmrig ] && ERROR "XMRIG is not found, exiting"  && exit 1
-		INFO "XMRIG doesn't running, restarting..." && ./xmrig --randomx-mode=fast --no-huge-pages -u $USER -p $PASS -o $MIMING_URL
+		INFO "XMRIG doesn't running, restarting..." && ./xmrig --randomx-mode=light --no-huge-pages -u $USER -p $PASS -o $MIMING_URL
 	fi
 	sleep 15
 done
