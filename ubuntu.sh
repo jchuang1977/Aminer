@@ -332,6 +332,8 @@ apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev vim
 #INFO "XMRIG create success"
 HEAD "Please restart Termux App"
 EOM
+
+echo "[ ! -e /usr/bin/git ] && bash ./install.sh" >> "$HOME/ubuntu-in-termux/ubuntu-fs/root/.bashrc"
 }
 
 
