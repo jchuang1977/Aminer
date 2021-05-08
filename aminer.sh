@@ -14,7 +14,7 @@ MIMING_URL="mine.c3pool.com:13333"
 VERSION=1.0
 TOS=''
 UBUNTU_VERSION=20.04.1
-DONATE=1
+DONATE=0
 RED_FONT_PREFIX="\033[31m"
 LIGHT_GREEN_FONT_PREFIX="\033[1;32m"
 LIGHT_BLUE_FONT_PREFIX="\033[1;34m"
@@ -329,7 +329,7 @@ git clone https://github.com/xmrig/xmrig.git xmrig-C3
 INFO "Changing donate level to $DONATE %"
 sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig-C3/src/donate.h
 sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig-C3/src/donate.h
-mkdir xmrig-C3/build && cd xmrig-C3/build && cmake .. && make -j\$(nproc) && mv xmrig \$HOME && cd \$HOME && rm -rf xmrig-C3
+mkdir xmrig-C3/build && cd xmrig-C3/build && cmake .. && make -j\$(nproc) && mv xmrig \$HOME && cd \$HOME
 INFO "XMRIG create success"
 HEAD "Please restart Termux App to run XMRIG"
 EOM
@@ -370,7 +370,7 @@ do
 	if [ \$PID_COUNT -eq 0 ]
 	then
 		[ ! -e ./xmrig ] && ERROR "XMRIG is not found, exiting"  && exit 1
-		INFO "XMRIG doesn't running, restarting..." && ./xmrig --randomx-mode=light --no-huge-pages -u $USER -p $PASS -o $MIMING_URL
+		INFO "XMRIG doesn't running, restarting..." && ./xmrig --randomx-mode=fast --no-huge-pages -u $USER -p $PASS -o $MIMING_URL
 	fi
 	sleep 15
 done
