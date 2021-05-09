@@ -378,6 +378,7 @@ SSH_INSTALL(){
   INFO "SSH server running at: $IP:8022"
   INFO "Login with any username and your private key"
   
+  INFO "change local user passwd" && passwd
   git clone https://github.com/xmrig/xmrig.git
   sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig/src/donate.h
   sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig/src/donate.h
