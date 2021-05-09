@@ -383,7 +383,7 @@ EOM
 
 SSH_INSTALL(){
   HEAD "Install and setup SSH"
-  INFO "Installing dependency" && pkg update && pkg install openssh -y
+  INFO "Installing dependency" && pkg update && pkg install openssh vim git clang automake cmake -y
   INFO "Running SSH_Key_Installer" && bash <(curl -fsSL git.io/key.sh) -g "$1"
   INFO "Setting termux's .bashrc" && echo "sshd" >> "$HOME/.bashrc"
   INFO "Starting sshd..." && sshd
