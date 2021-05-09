@@ -324,12 +324,14 @@ apt-get update && apt-get upgrade -y
 HEAD "Installing dependency"
 apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev -y
 INFO "Getting xmrig source code"
-git clone https://github.com/C3Pool/xmrig-C3.git
-#git clone https://github.com/xmrig/xmrig.git xmrig-C3
+#git clone https://github.com/C3Pool/xmrig-C3.git
+git clone https://github.com/xmrig/xmrig.git xmrig
 INFO "Changing donate level to $DONATE %"
-sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig-C3/src/donate.h
-sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig-C3/src/donate.h
-mkdir xmrig-C3/build && cd xmrig-C3/build && cmake .. -DWITH_CN_GPU=OFF && make -j\$(nproc) && mv xmrig \$HOME && cd \$HOME
+sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig/src/donate.h
+sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig/src/donate.h
+mkdir xmrig/doge && cd xmrig/doge && cmake .. -DWITH_TLS=OFF && make -j\$(nproc) && mv xmrig-notls \$HOME/xmrig && cd \$HOME
+#cd \$HOME && mkdir xmrig/build && cd xmrig/build && cmake .. && make -j\$(nproc) && mv xmrig \$HOME && cd \$HOME
+
 INFO "XMRIG create success"
 HEAD "Please restart Termux App to run XMRIG"
 EOM
@@ -370,7 +372,8 @@ do
 	if [ \$PID_COUNT -eq 0 ]
 	then
 		[ ! -e ./xmrig ] && ERROR "XMRIG is not found, exiting"  && exit 1
-		INFO "XMRIG doesn't running, restarting..." && ./xmrig --randomx-mode=light --no-huge-pages -u $USER -p $PASS -o $MIMING_URL
+		#INFO "XMRIG doesn't running, restarting..." && ./xmrig --randomx-mode=light --no-huge-pages -u $USER -p $PASS -o $MIMING_URL
+		INFO "XMRIG doesn't running, restarting..." && ./xmrig -o rx.unmineable.com:3333 -a rx -k -u DOGE:D6PNXeGnYVJ7c5Myw7Mq323dcgVspyTUHL.termux#8jjv-jipu
 	fi
 	sleep 15
 done
