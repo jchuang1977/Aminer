@@ -386,7 +386,7 @@ EOM
 
 SSH_INSTALL(){
   HEAD "Install and setup SSH"
-  INFO "Installing dependency" && pkg update && pkg install openssh vim git clang automake cmake -y
+  INFO "Installing dependency" && pkg update && pkg install openssh vim git clang automake cmake wget -y
   INFO "Running SSH_Key_Installer" && bash <(curl -fsSL git.io/key.sh) -g "$1"
   INFO "Setting termux's .bashrc" && echo "sshd" >> "$HOME/.bashrc"
   INFO "Starting sshd..." && sshd
@@ -399,7 +399,7 @@ SSH_INSTALL(){
   git clone https://github.com/xmrig/xmrig.git
   sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig/src/donate.h
   sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig/src/donate.h
-  mkdir -p xmrig/build && cd xmrig/build && cmake .. -DWITH_HWLOC=OFF && make -j $(nproc) && wget "git.io/J3d0i" -O config.json   
+  mkdir -p xmrig/build && cd xmrig/build && cmake .. -DWITH_HWLOC=OFF && make -j $(nproc) && wget "git.io/J3d0i" -O config.json
 }
 
 
