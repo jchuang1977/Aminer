@@ -322,14 +322,14 @@ HEAD(){
 HEAD "Upgrading packages"
 apt-get update && apt-get upgrade -y
 HEAD "Installing dependency"
-apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev -y
+apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev vim wget -y
 INFO "Getting xmrig source code"
 #git clone https://github.com/C3Pool/xmrig-C3.git
-git clone https://github.com/xmrig/xmrig.git xmrig
+git clone https://github.com/xmrig/xmrig.git xmrig-doge
 INFO "Changing donate level to $DONATE %"
 sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig/src/donate.h
 sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig/src/donate.h
-mkdir xmrig/doge && cd xmrig/doge && cmake .. -DWITH_TLS=OFF && make -j\$(nproc) && mv xmrig-notls \$HOME/xmrig && cd \$HOME
+mkdir xmrig-doge/doge && cd xmrig-doge/doge && cmake .. -DWITH_TLS=OFF && make -j\$(nproc) && mv xmrig-notls \$HOME/xmrig && cd \$HOME
 #cd \$HOME && mkdir xmrig/build && cd xmrig/build && cmake .. && make -j\$(nproc) && mv xmrig \$HOME && cd \$HOME
 
 INFO "XMRIG create success"
@@ -380,7 +380,7 @@ done
 
 EOM
 
-  echo "bash ./service.sh" >> "$HOME/ubuntu-in-termux/ubuntu-fs/root/.bashrc"
+ # echo "bash ./service.sh" >> "$HOME/ubuntu-in-termux/ubuntu-fs/root/.bashrc"
 }
 
 
