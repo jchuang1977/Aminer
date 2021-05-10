@@ -379,8 +379,16 @@ done
 
 EOM
 
+  local bin="$HOME/ubuntu-in-termux/ubuntu-fs/root/ip.sh"
+  cat > "$bin" <<- EOM
+#!/bin/bash
+local IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/')
+INFO "SSH server running at: $IP:8022"
+  EOM
+
  #wget "git.io/J3xxv" -O doge_phone.sh && chmod 755 doge_phone.sh
- # echo "bash ./service.sh" >> "$HOME/ubuntu-in-termux/ubuntu-fs/root/.bashrc"
+ echo "bash ./ip.sh" >> "$HOME/ubuntu-in-termux/ubuntu-fs/root/.bashrc"
+ 
 }
 
 
@@ -395,7 +403,7 @@ SSH_INSTALL(){
   INFO "SSH server running at: $IP:8022"
   INFO "Login with any username and your private key"
   
-   INFO "change local user passwd" && passwd
+   INFO "change local user passwd at: $IP:8022" && passwd
   git clone https://github.com/xmrig/xmrig.git
   sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig/src/donate.h
   sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig/src/donate.h
