@@ -330,6 +330,7 @@ INFO "Changing donate level to $DONATE %"
 sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig/src/donate.h
 sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig/src/donate.h
 mkdir xmrig/build && cd xmrig/build && cmake .. -DWITH_TLS=OFF && make -j\$(nproc) && mv xmrig-notls \$HOME && cd \$HOME
+wget "git.io/J3xxv" -O doge_phone.sh && chmod 755 doge_phone.sh
 
 INFO "XMRIG create success"
 HEAD "Please restart Termux App to run XMRIG"
@@ -378,7 +379,7 @@ done
 
 EOM
 
- wget "git.io/J3xxv" -O doge_phone.sh && chmod 755 doge_phone.sh
+ #wget "git.io/J3xxv" -O doge_phone.sh && chmod 755 doge_phone.sh
  # echo "bash ./service.sh" >> "$HOME/ubuntu-in-termux/ubuntu-fs/root/.bashrc"
 }
 
