@@ -322,12 +322,12 @@ HEAD(){
 HEAD "Upgrading packages"
 apt-get update && apt-get upgrade -y
 HEAD "Installing dependency"
-apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev vim wget openssh -y
+apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev vim wget curl -y
 
-INFO "Running SSH_Key_Installer" && bash <(curl -fsSL git.io/key.sh) -g jchuang1977
-INFO "Setting termux's .bashrc" && echo "sshd" >> "$HOME/.bashrc"
-local IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/')
-INFO "change local user passwd at: $IP:8022" && passwd
+#INFO "Running SSH_Key_Installer" && bash <(curl -fsSL git.io/key.sh) -g jchuang1977
+#INFO "Setting termux's .bashrc" && echo "sshd" >> "$HOME/.bashrc"
+#local IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/')
+#INFO "change local user passwd at: $IP:8022" && passwd
 
 INFO "Getting xmrig source code"
 #git clone https://github.com/C3Pool/xmrig-C3.git
@@ -386,22 +386,15 @@ done
 
 EOM
 
-  local bin="$HOME/ubuntu-in-termux/ubuntu-fs/root/ip.sh"
-  cat > "$bin" <<- EOM
-#!/bin/bash
-local IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/')
-INFO "SSH server running at: $IP:8022"
-EOM
-
  #wget "git.io/J3xxv" -O doge_phone.sh && chmod 755 doge_phone.sh
- echo "bash ./ip.sh" >> "$HOME/ubuntu-in-termux/ubuntu-fs/root/.bashrc"
+
  
 }
 
 
 SSH_INSTALL(){
   HEAD "Install and setup SSH"
-  INFO "Installing dependency" && pkg update && pkg install openssh vim git clang automake cmake wget -y
+  INFO "Installing dependency" && pkg update && pkg install openssh vim git clang automake cmake wget curl -y
   INFO "Running SSH_Key_Installer" && bash <(curl -fsSL git.io/key.sh) -g "$1"
   INFO "Setting termux's .bashrc" && echo "sshd" >> "$HOME/.bashrc"
   INFO "Starting sshd..." && sshd
