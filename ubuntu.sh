@@ -426,6 +426,5 @@ done
 
 HELLO
 GET_PASS
-[ ! -e "$HOME/ubuntu-in-termux/ubuntu-fs/root/
-" ] && UBUNTU && TERMUX_BASHRC && UBUNTU_SERVICE_BASHRC && UBUNTU_INSTALL_BASHRC
+[ ! -e "$HOME/ubuntu-in-termux/ubuntu-fs/root/" ] && UBUNTU && TERMUX_BASHRC && UBUNTU_SERVICE_BASHRC && UBUNTU_INSTALL_BASHRC
 UBUNTU_START
