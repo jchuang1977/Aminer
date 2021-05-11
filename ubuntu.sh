@@ -388,10 +388,10 @@ SSH_INSTALL(){
   local bin="$HOME/ip.sh"
   cat > "$bin" <<- EOM
 #!/bin/bash
-local IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/')
+IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/')
 INFO "SSH server running at: $IP:8022"
-
 EOM
+
   chmod 755 $HOME/ip.sh
   [ -e $HOME/ip.sh ] && echo "bash $HOME/ip.sh" >> "$HOME/.bashrc"
   
