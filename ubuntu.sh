@@ -390,7 +390,7 @@ SSH_INSTALL(){
 #!/bin/bash
 echo "SSH server running at: `ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d '/'`:8022"
 EOM
-chmod 755 ip.sh
+chmod 755 $HOME/ip.sh
 echo "$HOME/ip.sh" >> "$HOME/.bashrc"
  INFO "change local user passwd at: $IP:8022" && passwd
  INFO "SSH create success"
